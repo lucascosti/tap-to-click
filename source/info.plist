@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.lucascosti.taptoclick</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>7F370DFD-1B92-489C-AC55-720C55BBCB96</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A1CB985B-D0C4-4233-952C-D678A520ADF6</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Lucas Costi</string>
+	<key>description</key>
+	<string>Enable/disable tap to click in system preferences</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Tap-to-Click</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+-- open the preference pane
+tell application "System Preferences"
+	activate
+	reveal (pane id "com.apple.preference.trackpad")
+end tell
+tell application "System Events"
+	tell process "System Preferences"
+		tell checkbox 3 of tab group 1 of window "Trackpad"
+			repeat until exists (* wait until the object is accessible *)
+				delay 0.2
+			end repeat
+			if value is 0 then click
+		end tell
+	end tell
+end tell
+tell application "System Preferences"
+	quit
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tapon</string>
+				<key>subtext</key>
+				<string>Enable touchpad tap to click</string>
+				<key>text</key>
+				<string>Tap to click - ON</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>7F370DFD-1B92-489C-AC55-720C55BBCB96</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>tapoff</string>
+				<key>subtext</key>
+				<string>Disable trackpad tap to click</string>
+				<key>text</key>
+				<string>Tap to click - OFF</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A1CB985B-D0C4-4233-952C-D678A520ADF6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+-- open the preference pane
+tell application "System Preferences"
+	activate
+	reveal (pane id "com.apple.preference.trackpad")
+end tell
+tell application "System Events"
+	tell process "System Preferences"
+		tell checkbox 3 of tab group 1 of window "Trackpad"
+			repeat until exists (* wait until the object is accessible *)
+				delay 0.2
+			end repeat
+			if value is 1 then click
+		end tell
+	end tell
+end tell
+tell application "System Preferences"
+	quit
+end tell
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>https://github.com/lucascosti/tap-to-click
+
+This Alfred workflow provides enable/disable actions to control a MacBook trackpad's "tap to click" setting.
+
+This is useful for enabling/disabling the setting when doing a lot of typing, in order to prevent accidental movements of the cursor.
+
+Credit to Dan Schlosser (https://schlosser.io/lists/must-use-alfred-workflows/) and Evan Kline (https://www.40tech.com/2011/05/17/how-to-quickly-toggle-the-tap-to-click-functionality-of-your-trackpad-mac/) for starting-off ideas.</string>
+	<key>uidata</key>
+	<dict>
+		<key>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>7F370DFD-1B92-489C-AC55-720C55BBCB96</key>
+		<dict>
+			<key>xpos</key>
+			<integer>95</integer>
+			<key>ypos</key>
+			<integer>75</integer>
+		</dict>
+		<key>A1CB985B-D0C4-4233-952C-D678A520ADF6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>95</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>75</integer>
+		</dict>
+	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string></string>
+	<key>webaddress</key>
+	<string>https://github.com/lucascosti/tap-to-click</string>
+</dict>
+</plist>
