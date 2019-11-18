@@ -87,7 +87,7 @@ end alfred_script</string>
 				<key>keyword</key>
 				<string>tapon</string>
 				<key>subtext</key>
-				<string>Enable touchpad tap to click</string>
+				<string>Enable trackpad tap to click</string>
 				<key>text</key>
 				<string>Tap to click - ON</string>
 				<key>withspace</key>
