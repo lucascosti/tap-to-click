@@ -2,7 +2,7 @@
 
 This Alfred workflow provides on/off  actions to control a MacBook trackpad's "tap to click" setting.
 
-This is useful for enabling/disabling the setting when doing a lot of typing, in order to prevent accidental movements of the cursor.
+This is useful for enabling/disabling the setting (using only the keyboard) when doing a lot of typing, in order to prevent accidental movements of the cursor.
 
 Credit to [Dan Schlosser](https://schlosser.io/lists/must-use-alfred-workflows/) and [Evan Kline](https://www.40tech.com/2011/05/17/how-to-quickly-toggle-the-tap-to-click-functionality-of-your-trackpad-mac/) for starting-off ideas.
 

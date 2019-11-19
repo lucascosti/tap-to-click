@@ -8,11 +8,24 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
+		<key>302FF18C-B10A-4CFF-889C-461FC570136D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0387CB66-A358-40DA-8761-7B22989A6EB0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>7F370DFD-1B92-489C-AC55-720C55BBCB96</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</string>
+				<string>C1A2F6F2-6C10-4053-9C91-95777E8B7B48</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -25,7 +38,20 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</string>
+				<string>302FF18C-B10A-4CFF-889C-461FC570136D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>C1A2F6F2-6C10-4053-9C91-95777E8B7B48</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0387CB66-A358-40DA-8761-7B22989A6EB0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -48,40 +74,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
--- open the preference pane
-tell application "System Preferences"
-	activate
-	reveal (pane id "com.apple.preference.trackpad")
-end tell
-tell application "System Events"
-	tell process "System Preferences"
-		tell checkbox 3 of tab group 1 of window "Trackpad"
-			repeat until exists (* wait until the object is accessible *)
-				delay 0.2
-			end repeat
-			if value is 0 then click
-		end tell
-	end tell
-end tell
-tell application "System Preferences"
-	quit
-end tell
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>keyword</key>
@@ -99,6 +91,72 @@ end alfred_script</string>
 			<string>7F370DFD-1B92-489C-AC55-720C55BBCB96</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argument</key>
+				<string></string>
+				<key>variables</key>
+				<dict>
+					<key>onoroff</key>
+					<string>tapon</string>
+				</dict>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.argument</string>
+			<key>uid</key>
+			<string>C1A2F6F2-6C10-4053-9C91-95777E8B7B48</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>-- get the variable
+set onoroff to (system attribute "onoroff")
+-- open the preference pane
+tell application "System Preferences"
+  activate
+  reveal (pane id "com.apple.preference.trackpad")
+end tell
+-- set the checkbox according to the action
+tell application "System Events"
+  tell process "System Preferences"
+    tell checkbox 3 of tab group 1 of window "Trackpad"
+      repeat until exists (* wait until the object is accessible *)
+        delay 0.2
+      end repeat
+      if value is 0 and onoroff is "tapon" then 
+        click
+      else if value is 1 and onoroff is "tapoff" then
+        click
+      end if
+    end tell
+  end tell
+end tell
+-- quit the window
+tell application "System Preferences"
+  quit
+end tell</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0387CB66-A358-40DA-8761-7B22989A6EB0</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -124,34 +182,18 @@ end alfred_script</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
--- open the preference pane
-tell application "System Preferences"
-	activate
-	reveal (pane id "com.apple.preference.trackpad")
-end tell
-tell application "System Events"
-	tell process "System Preferences"
-		tell checkbox 3 of tab group 1 of window "Trackpad"
-			repeat until exists (* wait until the object is accessible *)
-				delay 0.2
-			end repeat
-			if value is 1 then click
-		end tell
-	end tell
-end tell
-tell application "System Preferences"
-	quit
-end tell
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
+				<key>argument</key>
+				<string>{query}</string>
+				<key>variables</key>
+				<dict>
+					<key>onoroff</key>
+					<string>tapoff</string>
+				</dict>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
+			<string>alfred.workflow.utility.argument</string>
 			<key>uid</key>
-			<string>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</string>
+			<string>302FF18C-B10A-4CFF-889C-461FC570136D</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -161,17 +203,24 @@ end alfred_script</string>
 
 This Alfred workflow provides enable/disable actions to control a MacBook trackpad's "tap to click" setting.
 
-This is useful for enabling/disabling the setting when doing a lot of typing, in order to prevent accidental movements of the cursor.
+This is useful for enabling/disabling the setting using only the keyboard when doing a lot of typing, in order to prevent accidental movements of the cursor.
 
 Credit to Dan Schlosser (https://schlosser.io/lists/must-use-alfred-workflows/) and Evan Kline (https://www.40tech.com/2011/05/17/how-to-quickly-toggle-the-tap-to-click-functionality-of-your-trackpad-mac/) for starting-off ideas.</string>
 	<key>uidata</key>
 	<dict>
-		<key>1D39FEC2-303D-4EA9-8BA5-3FFAA6DD11AA</key>
+		<key>0387CB66-A358-40DA-8761-7B22989A6EB0</key>
 		<dict>
 			<key>xpos</key>
-			<integer>350</integer>
+			<integer>440</integer>
 			<key>ypos</key>
-			<integer>215</integer>
+			<integer>140</integer>
+		</dict>
+		<key>302FF18C-B10A-4CFF-889C-461FC570136D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>245</integer>
 		</dict>
 		<key>7F370DFD-1B92-489C-AC55-720C55BBCB96</key>
 		<dict>
@@ -187,12 +236,12 @@ Credit to Dan Schlosser (https://schlosser.io/lists/must-use-alfred-workflows/) 
 			<key>ypos</key>
 			<integer>215</integer>
 		</dict>
-		<key>E6E4BE8B-7B81-4EA4-952A-70B64C22C845</key>
+		<key>C1A2F6F2-6C10-4053-9C91-95777E8B7B48</key>
 		<dict>
 			<key>xpos</key>
-			<integer>350</integer>
+			<integer>285</integer>
 			<key>ypos</key>
-			<integer>75</integer>
+			<integer>105</integer>
 		</dict>
 	</dict>
 	<key>variablesdontexport</key>
