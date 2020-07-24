@@ -8,4 +8,4 @@ Credit to [Dan Schlosser](https://schlosser.io/lists/must-use-alfred-workflows/)
 
 The [`Tap-to-Click.alfredworkflow` file](/Tap-to-Click.alfredworkflow) is all you need to import into Alfred. I've also extracted that file here in this repo so the source can be seen here on GitHub.
 
-<img src="https://raw.githubusercontent.com/lucascosti/tap-to-click/master/screenshot.png" width="50%">
+<img src="https://raw.githubusercontent.com/lucascosti/tap-to-click/main/screenshot.png" width="50%">
